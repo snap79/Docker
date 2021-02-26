@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build it faiz/docker-react -f dockerfile.dev .
+
+scripts:
+  - docker run faiz/docker-react npm run test -- --coverage
