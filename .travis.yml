@@ -9,3 +9,16 @@ before_install:
 
 script:
   - docker run -e CI=true faiz/docker-react npm run test
+
+  deploy:
+    provider: elasticbeantalk
+    region: "us-east-2"
+    app:  "Environments"
+    env:  "Dockerreact-env"
+    bucket_name:  "elasticbeanstalk-us-east-2-480032800536"
+    bucket_path:  "Environments"
+    on:
+      branch: master
+    access_key_id:  $AWS_ACCESS_KEY
+    secret_access_key:
+      secure: "$AWS_SECRET_KEY"
